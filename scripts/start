@@ -46,16 +46,6 @@ if [ -n "$PROCESSES" ]; then
     sed -i "s/processes = 1/processes = ${PROCESSES}/" /etc/uwsgi/apps-enabled/pinry.ini
 fi
 
-# Check for secret key if one doesn't exist create.
-if [ ! -f /data/production_secret_key.txt ]
-then
-    cd /data
-    PRODUCTION_SECRET_KEY=`pwgen -c -n -1 65`
-    echo $PRODUCTION_SECRET_KEY > /data/production_secret_key.txt
-else
-    PRODUCTION_SECRET_KEY=`cat /data/production_secret_key.txt`
-fi
-
 # If static files don't exist collect them
 if [ -z "$NO_STATIC_CACHE" -a ! -d /data/static ]
 then
