@@ -73,4 +73,4 @@ User.objects.create_superuser('$SUPER_USER_NAME', '$SUPER_USER_EMAIL', '$SUPER_U
 EOS
 fi
 
-supervisord
+gunicorn pinry.wsgi:application -b 0.0.0.0:80 --timeout 30 --log-file -
