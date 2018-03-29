@@ -2,7 +2,7 @@ FROM python:3
 
 RUN mkdir -p /srv/www/; cd /srv/www/; git clone https://github.com/haoling/pinry.git
 RUN mkdir /srv/www/pinry/logs; mkdir /srv/www/pinry/uwsgi; mkdir /data
-WORKDIR /srv/www
+WORKDIR /srv/www/pinry
 
 RUN pip install pipenv
 RUN pipenv install --three --system
