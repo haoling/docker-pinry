@@ -38,8 +38,8 @@ if [ -n "$DEBUG" ]; then
 fi
 
 if [ -n "$NO_STATIC_CACHE" ]; then
-    sed -i "38s#alias /data/static;#alias /srv/www/pinry/pinry/static;#" /etc/nginx/sites-available/default
-    sed -i "39s/expires max;/expires off;/" /etc/nginx/sites-available/default
+    sed -i "9s#alias /data/static;#alias /srv/www/pinry/pinry/static;#" /etc/nginx/sites-available/default
+    sed -i "10s/expires max;/expires off;/" /etc/nginx/sites-available/default
 fi
 
 if [ -n "$PROCESSES" ]; then
