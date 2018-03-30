@@ -1,13 +1,13 @@
 FROM python:2.7-jessie
-RUN apt-get update &&\
-     apt-get install -y nginx nginx-extras &&\
-     apt-get clean &&\
-     rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/*
 RUN pip install pipenv
 ADD app /srv/www/pinry
 RUN cd /srv/www/pinry; pipenv install --system
 WORKDIR /srv/www/pinry
 RUN pip install uwsgi supervisor
+RUN apt-get update &&\
+     apt-get install -y nginx nginx-extras &&\
+     apt-get clean &&\
+     rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/*
 RUN mkdir /srv/www/pinry/logs; mkdir /srv/www/pinry/uwsgi; mkdir /data
 
 # Fix permissions
