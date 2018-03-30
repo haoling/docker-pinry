@@ -6,7 +6,7 @@ RUN cd /srv/www/pinry; pipenv install --system
 WORKDIR /srv/www/pinry
 RUN pip install uwsgi supervisor
 RUN apt-get update &&\
-     apt-get install -y nginx nginx-extras &&\
+     apt-get install -y nginx nginx-extras jq &&\
      apt-get clean &&\
      rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/*
 RUN mkdir /srv/www/pinry/logs; mkdir /srv/www/pinry/uwsgi; mkdir /data
