@@ -2,7 +2,7 @@ FROM python:2.7-jessie
 RUN pip install pipenv
 RUN mkdir -p /srv/www/; cd /srv/www/; git clone https://github.com/haoling/pinry.git
 WORKDIR /src/www/pinry
-RUN pipenv install --system
+RUN cd /src/www/pinry; pipenv install --system
 RUN pip install uwsgi supervisor
 RUN mkdir /srv/www/pinry/logs; mkdir /srv/www/pinry/uwsgi; mkdir /data
 
