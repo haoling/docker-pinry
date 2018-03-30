@@ -30,6 +30,8 @@ ADD ./scripts/start /start
 RUN chown -R www-data:www-data /data; chmod +x /start
 RUN mkdir /var/log/supervisor /var/log/uwsgi
 
+ENV PYTHONPATH /usr/local/lib/python2.7/site-packages:/usr/local/lib/python2.7/lib-dynload:/usr/local/lib/python2.7:/usr/lib/python2.7
+
 # 80 is for nginx web, /data contains static files and database /start runs it.
 expose 80
 volume ["/data"]
