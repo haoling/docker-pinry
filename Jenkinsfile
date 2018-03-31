@@ -1,9 +1,8 @@
 node('docker') {
     def app
-    def VERSION
-    def BRANCH
-    def REPO
-    def NO_CAHE
+    def VERSION=env.VERSION
+    def BRANCH=env.BRANCH
+    def REPO=env.REPO
     stage('Preparation') { // for display purposes
         if (env.NO_CACHE.toBoolean()) cleanWs()
         checkout scm
