@@ -7,18 +7,18 @@ node('docker') {
         if (env.NO_CACHE.toBoolean()) cleanWs()
         checkout scm
         if (! VERSION) VERSION="latest"
-        if (! BRANCH) BRANCH="origin/master"
-        if (! REPO) REPO='https://github.com/pinry/pinry.git'
+        if (! BRANCH) BRANCH="origin/my-master"
+        if (! REPO) REPO='https://github.com/haoling/pinry.git'
         checkout([$class: 'GitSCM', branches: [[name: BRANCH]], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'app']], submoduleCfg: [], userRemoteConfigs: [[url: REPO]]])
     }
     stage('Build') {
         def PARAM="."
-        if (env.NO_CACHE.toBoolean()) PARAM="--no-cache ${PARAM}"
-        app = docker.build("haoling/pinry", PARAM)
+        if (env.NO_CACHE.toBoolean()) PARAM="--no-cachie ${PARAM}"
+        sh "docker build -t drive.fei-yen.jp:5443/pinry/pinry:latest ${PARAM}"
+        sh "docker tag drive.fei-yen.jp:5443/pinry/pinry:latest drive.fei-yen.jp:5443/pinry/pinry:${env.BUILD_NUMBER}"
     }
     stage('Push image') {
-        docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
-            app.push(VERSION);
-        }
+        sh "docker push drive.fei-yen.jp:5443/pinry/pinry:latest"
+        sh "docker push drive.fei-yen.jp:5443/pinry/pinry:${env.BUILD_NUMBER}"
     }
 }
