@@ -43,7 +43,7 @@ if [ -n "$NO_STATIC_CACHE" ]; then
 fi
 
 if [ -n "$PROCESSES" ]; then
-    sed -i "s/processes = 1/processes = ${PROCESSES}/" /etc/uwsgi/apps-enabled/pinry.ini
+    sed -i "s/processes = [0-9]*/processes = ${PROCESSES}/" /etc/uwsgi/apps-enabled/pinry.ini
 fi
 
 # If static files don't exist collect them
