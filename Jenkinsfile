@@ -13,7 +13,7 @@ node('docker') {
     }
     stage('Build') {
         def PARAM="."
-        if (env.NO_CACHE.toBoolean()) PARAM="--no-cachie ${PARAM}"
+        if (env.NO_CACHE.toBoolean()) PARAM="--no-cache ${PARAM}"
         sh "docker build -t drive.fei-yen.jp:5443/pinry/pinry:latest ${PARAM}"
         sh "docker tag drive.fei-yen.jp:5443/pinry/pinry:latest drive.fei-yen.jp:5443/pinry/pinry:${env.BUILD_NUMBER}"
     }
