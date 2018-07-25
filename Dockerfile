@@ -1,6 +1,6 @@
 FROM python:2.7-jessie
 RUN groupadd -g 2300 tmpgroup && usermod -g tmpgroup www-data && groupdel www-data && groupadd -g 1000 www-data && usermod -g www-data www-data && usermod -u 1000 www-data && groupdel tmpgroup
-RUN pip install pipenv
+RUN pip install --upgrade pip && pip install pipenv
 ADD app /srv/www/pinry
 RUN cd /srv/www/pinry; pipenv install --system
 WORKDIR /srv/www/pinry
