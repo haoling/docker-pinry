@@ -1,5 +1,5 @@
 FROM python:2.7-jessie
-RUN pip install pipenv
+RUN pip install --upgrade pip && pip install pipenv
 ADD app /srv/www/pinry
 RUN cd /srv/www/pinry; pipenv install --system
 WORKDIR /srv/www/pinry
